@@ -1,0 +1,89 @@
+.category-container {
+    display: flex;
+}
+
+.subcategory-container {
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.checkbox-group {
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+.radio-group {
+    margin-left: 10px;
+    margin-right: 20px;
+    /* display: flex; */
+    /* align-items: center; */
+    margin-bottom: 8px;
+}
+
+.desc {
+    margin-bottom: 10px;
+}
+
+.quill {
+    margin-top: 10px;
+}
+
+/* Define media queries for responsiveness */
+@media (max-width: 768px) {
+
+    .category-container,
+    .subcategory-container {
+        flex-direction: column;
+    }
+
+    .checkbox-group {
+        margin: 5px 0;
+    }
+}
+
+/* Styling for the category and subcategory sections */
+.category-container {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+}
+
+.subcategory-container {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+}
+
+.checkbox-group {
+    margin-right: 10px;
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+}
+
+.checkbox-group input {
+    margin-right: 5px;
+}
+
+/* Add some spacing between labels and inputs in radio group */
+.radio-group {
+    margin-right: 20px;
+    margin-bottom: 8px;
+}
+
+/* Apply specific styling for smaller screens */
+@media (max-width: 768px) {
+    .radio-group {
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+}
+
+/* Adjust styling for description (ReactQuill) */
+.desc {
+    margin-bottom: 10px;
+}
+
+.quill {
+    margin-top: 10px;
+}
