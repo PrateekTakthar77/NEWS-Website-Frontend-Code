@@ -51,32 +51,32 @@ function App() {
                 {loggedIn ? (
                   <>
                     <Route path="/" element={<HomeDashboard />} />
-                    <Route path="/products" element={<ProductManagement />} />
+                    {/* <Route path="/products" element={<ProductManagement />} /> */}
                     <Route path="/articles" element={<UserTable />} />
                     <Route path="/category" element={<OrdersTable />} />
-                    {/* <Route path="/orders/:orderId" element={<OrderDetails />} />
-                    <Route path="/add-salesperson" element={<RegisterForm />} /> */}
-                    {/* <Route path="/salesperson" element={<TabsSalesPerson />} />
-                    <Route
+                    {/* <Route path="/orders/:orderId" element={<OrderDetails />} /> */}
+                    {/* <Route path="/add-salesperson" element={<RegisterForm />} />  */}
+                    <Route path="/salesperson" element={<TabsSalesPerson />} />
+                    {/* <Route path="/Backup" element={<PremiumCharges />} /> */}
+                    {/*<Route
                       path="/salesperson/update/:personId"
                       element={<UpdatePerson />}
                     />
-                    <Route
+                    {/* <Route
                       path="/salesperson/:personId"
                       element={<SinglePerson />}
-                    />
-                    <Route path="/pricetable" element={<GoldPriceTable />} />
-                    <Route
+                    /> */}
+                    {/* <Route path="/pricetable" element={<GoldPriceTable />} /> */}
+                    {/* <Route
                       path="/makingcharges"
                       element={<MakingChargesTable />}
-                    />
-                    <Route path="/bookings" element={<BookingsTable />} />
-                    <Route path="/customorders" element={<CustomOrders />} />
-                    <Route
+                    /> */}
+                    {/* <Route path="/bookings" element={<BookingsTable />} /> */}
+                    {/* <Route path="/customorders" element={<CustomOrders />} /> */}
+                    {/* <Route
                       path="/Singlecustomorders/:orderId"
                       element={<CustomOrdersDetails />} 
-                    />*/}
-                    <Route path="/Backup" element={<PremiumCharges />} />
+                    /> */}
                     {/* <Route
                       path="/editPremiumCharges"
                       element={<editPremiumCharges />}

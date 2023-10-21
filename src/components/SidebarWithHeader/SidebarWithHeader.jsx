@@ -51,8 +51,8 @@ const LinkItems = [
   { name: "Home", icon: FiHome, link: "/" },
   // { name: "Manage Products", icon: MdShoppingCartCheckout, link: "/products" },
   { name: "Manage Articles", icon: MdOutlineManageSearch, link: "/articles" },
-  { name: "Manage category", icon: MdOutlineCreate, link: "/category" },
-  // { name: "Manage Sales Person", icon: FiUserPlus, link: "/salesperson" },
+  // { name: "Manage category", icon: MdOutlineCreate, link: "/category" },
+  { name: "Manage Category", icon: FiUserPlus, link: "/salesperson" },
   // { name: "Manage Coins", icon: MdPriceChange, link: "/pricetable" },
   // {
   //   name: "Manage Making Charges",
@@ -69,11 +69,11 @@ const LinkItems = [
   //   icon: TbTruckDelivery,
   //   link: "/customorders",
   // },
-  {
-    name: "Backup",
-    icon: TbTruckDelivery,
-    link: "/Backup",
-  },
+  // {
+  //   name: "Backup",
+  //   icon: TbTruckDelivery,
+  //   link: "/Backup",
+  // },
 ];
 
 export default function SidebarWithHeader({ children, setLoggedIn }) {

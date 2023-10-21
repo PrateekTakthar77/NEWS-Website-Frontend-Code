@@ -1,18 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Box, Input, Button, VStack, Heading, Text } from "@chakra-ui/react";
 import axios from "axios";
-import { AdminState } from "../../context/context";
+import { Link } from "react-router-dom";
 
 const OrdersTable = () => {
   const [newCategory, setNewCategory] = useState("");
   const [newSubcategory, setNewSubcategory] = useState("");
-  const { API_BASE_URL } = AdminState();
 
   const handleAddCategory = () => {
     if (newCategory) {
       // Send a POST request to add a new category
       axios
-        .post(`${API_BASE_URL}/api/article/category/`, { name: newCategory })
+        .post(`https://news-b4c3.onrender.com/api/article/category/`, {
+          name: newCategory,
+        })
         .then((response) => {
           // Handle success or provide user feedback
           console.log("New category added:", response.data);
@@ -28,7 +29,7 @@ const OrdersTable = () => {
     if (newSubcategory) {
       // Send a POST request to add a new subcategory
       axios
-        .post(`${API_BASE_URL}/api/article/subcategory/`, {
+        .post(`https://news-b4c3.onrender.com/api/article/subcategory/`, {
           name: newSubcategory,
         })
         .then((response) => {
@@ -68,9 +69,39 @@ const OrdersTable = () => {
             onChange={(e) => setNewSubcategory(e.target.value)}
           />
           <Button onClick={handleAddSubcategory}>Add Subcategory</Button>
+          <Link to="/salesperson">
+            <Button mt={4}>Show Data</Button>
+          </Link>
         </VStack>
       </Box>
     </Box>
+    // <VStack spacing={8} align="stretch">
+    //   <Heading as="h2" size="lg">
+    //     Add New Category
+    //   </Heading>
+    //   <Input
+    //     type="text"
+    //     placeholder="New Category"
+    //     value={newCategory}
+    //     onChange={(e) => setNewCategory(e.target.value)}
+    //   />
+    //   <Button onClick={handleAddCategory}>Add Category</Button>
+
+    //   <Heading as="h2" size="lg">
+    //     Add New Subcategory
+    //   </Heading>
+    //   <Input
+    //     type="text"
+    //     placeholder="New Subcategory"
+    //     value={newSubcategory}
+    //     onChange={(e) => setNewSubcategory(e.target.value)}
+    //   />
+    //   <Button onClick={handleAddSubcategory}>Add Subcategory</Button>
+
+    //   <Link to="/salesperson">
+    //     <Button>Show Data</Button>
+    //   </Link>
+    // </VStack>
   );
 };
 

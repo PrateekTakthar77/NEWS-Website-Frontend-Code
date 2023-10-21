@@ -18,12 +18,13 @@ const UserTable = () => {
   const [loading, setLoading] = useState(true);
   const [users, setUsers] = useState([]);
   const [error, setError] = useState(null);
-  const { token, API_BASE_URL } = AdminState();
 
   useEffect(() => {
     const fetchNewUsers = async () => {
       try {
-        const response = await axios.get(`${API_BASE_URL}/api/article`);
+        const response = await axios.get(
+          `https://news-b4c3.onrender.com/api/article`
+        );
         setUsers(response.data);
         setLoading(false);
       } catch (error) {
