@@ -75,33 +75,6 @@ const OrdersTable = () => {
         </VStack>
       </Box>
     </Box>
-    // <VStack spacing={8} align="stretch">
-    //   <Heading as="h2" size="lg">
-    //     Add New Category
-    //   </Heading>
-    //   <Input
-    //     type="text"
-    //     placeholder="New Category"
-    //     value={newCategory}
-    //     onChange={(e) => setNewCategory(e.target.value)}
-    //   />
-    //   <Button onClick={handleAddCategory}>Add Category</Button>
-
-    //   <Heading as="h2" size="lg">
-    //     Add New Subcategory
-    //   </Heading>
-    //   <Input
-    //     type="text"
-    //     placeholder="New Subcategory"
-    //     value={newSubcategory}
-    //     onChange={(e) => setNewSubcategory(e.target.value)}
-    //   />
-    //   <Button onClick={handleAddSubcategory}>Add Subcategory</Button>
-
-    //   <Link to="/salesperson">
-    //     <Button>Show Data</Button>
-    //   </Link>
-    // </VStack>
   );
 };
 
