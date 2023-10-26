@@ -58,3 +58,7 @@
      display: block;
      margin: 20px 0;
  }
+
+ .ql-container .ql-snow {
+     height: 400px;
+ }

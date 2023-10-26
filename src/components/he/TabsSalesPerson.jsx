@@ -415,7 +415,7 @@ const OrdersTable = () => {
               <SimpleGrid columns={1} spacing={2} pl={6}>
                 {category.subcategory.map((subcat) => (
                   <Text key={subcat} bg="lightgray" p={2} mb={4} rounded="md">
-                    {subcat}
+                    -{subcat}
                   </Text>
                 ))}
               </SimpleGrid>

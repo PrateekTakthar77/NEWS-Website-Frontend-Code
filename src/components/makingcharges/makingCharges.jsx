@@ -1,116 +1,91 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import {
-  Box,
-  Table,
-  Tbody,
-  Td,
-  Th,
-  Thead,
-  Tr,
-  Spinner,
   Button,
-  Heading,
-  Center,
+  FormControl,
+  Select,
+  Input,
+  FormLabel,
 } from "@chakra-ui/react";
 import axios from "axios";
-import EditMakingChargesForm from "./EditMakingChargesForm";
-import { AdminState } from "../context/context";
-const MakingChargesTable = () => {
-  const [makingCharges, setMakingCharges] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-  const { API_BASE_URL } = AdminState();
 
+function AddSubcategoryForm() {
+  const [categories, setCategories] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState("");
+  const [subcategory, setSubcategory] = useState("");
+
+  // Fetch existing categories from the server when the component mounts
   useEffect(() => {
-    fetchMakingCharges();
+    axios
+      .get("http://localhost:5009/api/article/category/get")
+      .then((response) => {
+        setCategories(response.data); // Assuming the server provides a list of categories
+      });
   }, []);
-  //
-  const [editMakingChargesData, setEditMakingChargesData] = useState(null);
-  const [isEditing, setIsEditing] = useState(false);
 
-  const handleEditMakingCharges = (makingChargesData) => {
-    setEditMakingChargesData(makingChargesData);
-    setIsEditing(true);
-  };
+  // const handleAddSubcategory = async () => {
+  //   try {
+  //     // Send a POST request to add the subcategory to the selected category
+  //     await axios.post(`/add-subcategory/${selectedCategory}`, { subcategory });
+  //     // Handle success or show a notification to the user
+  //     // You can use state or a notification library to inform the user.
+  //   } catch (error) {
+  //     // Handle errors and show an error message to the user
+  //   }
+  // };
 
-  const refreshTable = () => {
-    // Add logic to refresh the making charges table (e.g., by re-fetching data)
-    fetchMakingCharges();
-    setIsEditing(false);
-  };
-
-  const fetchMakingCharges = async () => {
+  const handleAddSubcategory = async () => {
     try {
-      const response = await axios.get(`${API_BASE_URL}/api/article`);
-      setMakingCharges(response.data);
-      setLoading(false);
+      if (selectedCategory === "" || subcategory === "") {
+        // Add client-side validation to ensure both fields are filled
+        // You can show an error message to the user.
+        console.error("Both fields are required.");
+        return;
+      }
+
+      // Send a POST request to add the subcategory to the selected category
+      await axios.post(
+        `http://localhost:5009/api/article/category/add/${selectedCategory}`,
+        {
+          subcategory,
+        }
+      );
+
+      // Clear the subcategory input field after successful submission
+      setSubcategory("");
+
+      // Optionally, show a success message or update the UI to reflect the change.
     } catch (error) {
-      setError("Error while fetching making charges");
-      setLoading(false);
+      // Handle errors and show an error message to the user
+      console.error("Error adding subcategory:", error);
     }
   };
 
   return (
-    <Box>
-      <Center>
-        <Heading as="h1" size="l" mb="4" mr="17" mt="2">
-          MAKING CHARGES ON PRODUCTS
-        </Heading>
-      </Center>
-      {loading ? (
-        <Spinner size="lg" />
-      ) : error ? (
-        <Box>{error}</Box>
-      ) : (
-        <Box maxW={"100%"} minW={"100%"}>
-          <Table variant="striped">
-            <Thead>
-              <Tr>
-                <Th>Category</Th>
-                <Th>Subcategory</Th>
-                <Th>Making Charges</Th>
-              </Tr>
-            </Thead>
-            {/* <Tbody>
-              {makingCharges.map((charge) => (
-                <Tr key={charge._id}>
-                  <Td>{charge.category}</Td>
-                  <Td>{charge.subcategory}</Td>
-                  <Td>{charge.makingcharges} %</Td>
-                </Tr>
-              ))}
-            </Tbody> */}
-            <Tbody fontSize={"x-small"}>
-              {makingCharges.map((charge) => (
-                <Tr key={charge._id}>
-                  <Td>{charge.title}</Td>
-                  <Td>{charge.subcategory}</Td>
-                  <Td>{charge.makingcharges} %</Td>
-                  <Td>
-                    <Button
-                      onClick={() => handleEditMakingCharges(charge)}
-                      ml={2}
-                      size="sm"
-                      colorScheme="blue"
-                    >
-                      Edit
-                    </Button>
-                  </Td>
-                </Tr>
-              ))}
-            </Tbody>
-            {isEditing && (
-              <EditMakingChargesForm
-                makingChargesData={editMakingChargesData}
-                onClose={() => setIsEditing(false)}
-                refreshTable={refreshTable}
-              />
-            )}
-          </Table>
-        </Box>
-      )}
-    </Box>
+    <form>
+      <FormControl id="category">
+        <FormLabel>Select Category</FormLabel>
+        <Select
+          value={selectedCategory}
+          onChange={(e) => setSelectedCategory(e.target.value)}
+        >
+          {categories.map((category) => (
+            <option key={category._id} value={category._id}>
+              {category.name}
+            </option>
+          ))}
+        </Select>
+      </FormControl>
+      <FormControl id="subcategory">
+        <FormLabel>Add Subcategory</FormLabel>
+        <Input
+          type="text"
+          value={subcategory}
+          onChange={(e) => setSubcategory(e.target.value)}
+        />
+      </FormControl>
+      <Button onClick={handleAddSubcategory}>Add Subcategory</Button>
+    </form>
   );
-};
+}
 
-export default MakingChargesTable;
+export default AddSubcategoryForm;

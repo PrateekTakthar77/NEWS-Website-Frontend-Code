@@ -51,14 +51,14 @@ const LinkItems = [
   { name: "Home", icon: FiHome, link: "/" },
   // { name: "Manage Products", icon: MdShoppingCartCheckout, link: "/products" },
   { name: "Manage Articles", icon: MdOutlineManageSearch, link: "/articles" },
-  // { name: "Manage category", icon: MdOutlineCreate, link: "/category" },
+  { name: "Manage category", icon: MdOutlineCreate, link: "/category" },
   { name: "Manage Category", icon: FiUserPlus, link: "/salesperson" },
   // { name: "Manage Coins", icon: MdPriceChange, link: "/pricetable" },
-  // {
-  //   name: "Manage Making Charges",
-  //   icon: FaWeightHanging,
-  //   link: "/makingcharges",
-  // },
+  {
+    name: "Manage Making Charges",
+    icon: FaWeightHanging,
+    link: "/makingcharges",
+  },
   // {
   //   name: "Book an appointment",
   //   icon: FaListOl,

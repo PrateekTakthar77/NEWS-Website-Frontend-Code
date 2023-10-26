@@ -4,63 +4,43 @@ import "../Dash/Home.css";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import "./Home.css";
+import {
+  Box,
+  Heading,
+  Input,
+  Textarea,
+  Checkbox,
+  Radio,
+  Stack,
+  RadioGroup,
+  Button,
+  FormControl,
+  FormLabel,
+} from "@chakra-ui/react";
 
 function HomeDashboard() {
   const [title, setTitle] = useState("");
   const [quillDescription, setQuillDescription] = useState("");
-  const [category, setCategory] = useState("");
+  const [selectedCategories, setSelectedCategories] = useState([]);
+  const [selectedSubcategories, setSelectedSubcategories] = useState([]);
   const [photo, setPhoto] = useState(null);
   const [active, setActive] = useState("");
   const [seotitle, Setseotitle] = useState("");
   const [seodescription, Setseodescription] = useState("");
-
-  const [selectedCategories, setSelectedCategories] = useState([]);
-  const [selectedSubcategories, setSelectedSubcategories] = useState([]);
-  const [availableCategories, setAvailableCategories] = useState([]);
-  const [availableSubCategories, setAvailableSubCategories] = useState([]);
+  const [categories, setCategories] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState(null);
+  const [availableSubcategories, setAvailableSubcategories] = useState([]);
 
   useEffect(() => {
     axios
       .get("https://news-b4c3.onrender.com/api/article/category/get")
       .then((response) => {
-        const categoryNames = response.data.map((category) => category.name);
-        setAvailableCategories(categoryNames);
+        setCategories(response.data);
       })
       .catch((error) => {
         console.error("Error fetching categories:", error);
       });
-
-    axios
-      .get("https://news-b4c3.onrender.com/api/article/subcategory/get")
-      .then((response) => {
-        if (
-          Array.isArray(response.data.subcategories) &&
-          response.data.subcategories.length > 0
-        ) {
-          const subcategoryNames = response.data.subcategories.map(
-            (subcategory) => subcategory.name
-          );
-          setAvailableSubCategories(subcategoryNames);
-        } else {
-          console.error(
-            "Subcategories data is not in the expected format:",
-            response.data
-          );
-        }
-      })
-      .catch((error) => {
-        console.error("Error fetching subcategories:", error);
-      });
-  }, []); // The empty dependency array ensures this effect runs only once
-
-  const handleInputChange = (e, field) => {
-    if (field === "title") setTitle(e.target.value);
-    if (field === "description") setQuillDescription(e);
-    if (field === "category") setCategory(e.target.value);
-    if (field === "status") setActive(e.target.value);
-    if (field === "seotitle") Setseotitle(e.target.value);
-    if (field === "seodescription") Setseodescription(e.target.value);
-  };
+  }, []);
 
   const handlePhotoChange = (e) => {
     setPhoto(e.target.files[0]);
@@ -68,10 +48,6 @@ function HomeDashboard() {
 
   const uploadBlogData = async (blogData) => {
     try {
-      // Join selectedCategories and selectedSubcategories as comma-separated strings
-      blogData.category = selectedCategories.join(",");
-      blogData.subcategory = selectedSubcategories.join(",");
-
       const response = await axios.post(
         "https://news-b4c3.onrender.com/api/article",
         blogData
@@ -83,7 +59,7 @@ function HomeDashboard() {
     const clearForm = () => {
       setTitle("");
       setQuillDescription("");
-      setCategory("");
+      setSelectedCategory(null);
       setPhoto(null);
       setActive("");
       Setseotitle("");
@@ -117,11 +93,12 @@ function HomeDashboard() {
       uploadBlogData({
         title,
         description: quillDescription,
-        category,
+        category: selectedCategories.join(", "),
         photo: secureUrl,
         status: active,
         seotitle,
         seodescription,
+        subcategory: selectedSubcategories.join(", "),
       });
     } catch (error) {
       console.error("Error uploading image:", error);
@@ -129,25 +106,56 @@ function HomeDashboard() {
     }
   };
 
-  const handleCategoryChange = (e) => {
+  // Define the handleInputChange function to update input fields
+  const handleInputChange = (e, field) => {
     const value = e.target.value;
-    if (e.target.checked) {
-      setSelectedCategories([...selectedCategories, value]);
-    } else {
-      setSelectedCategories(selectedCategories.filter((cat) => cat !== value));
+
+    // Update the corresponding state based on the field
+    if (field === "title") {
+      setTitle(value);
+    } else if (field === "seotitle") {
+      Setseotitle(value);
+    } else if (field === "seodescription") {
+      Setseodescription(value);
+    } else if (field === "status") {
+      setActive(value);
     }
   };
 
-  const handleSubcategoryChange = (e) => {
-    const value = e.target.value;
+  const handleCategoryChange = (e) => {
+    const selectedCategoryName = e.target.value;
+    let updatedSelectedCategories;
+
     if (e.target.checked) {
-      setSelectedSubcategories([...selectedSubcategories, value]);
+      updatedSelectedCategories = [...selectedCategories, selectedCategoryName];
+    } else {
+      updatedSelectedCategories = selectedCategories.filter(
+        (category) => category !== selectedCategoryName
+      );
+    }
+
+    setSelectedCategories(updatedSelectedCategories);
+
+    // Update available subcategories based on all selected categories
+    const selectedSubcategories = categories
+      .filter((category) => updatedSelectedCategories.includes(category.name))
+      .map((category) => category.subcategory)
+      .flat(); // Flatten the array of subcategories
+
+    setAvailableSubcategories(selectedSubcategories);
+  };
+
+  const handleSubcategoryChange = (e) => {
+    const selectedSubcategory = e.target.value;
+    if (e.target.checked) {
+      setSelectedSubcategories([...selectedSubcategories, selectedSubcategory]);
     } else {
       setSelectedSubcategories(
-        selectedSubcategories.filter((subcat) => subcat !== value)
+        selectedSubcategories.filter((subcat) => subcat !== selectedSubcategory)
       );
     }
   };
+
   const modules = {
     toolbar: [
       [{ header: "1" }, { header: "2" }],
@@ -162,124 +170,6 @@ function HomeDashboard() {
   };
 
   return (
-    // <div className="form-container">
-    //   <div className="form-container">
-    //     <h2>Upload a Article</h2>
-    //     <form>
-    //       <label for="title">Blog Title</label>
-    //       <input
-    //         type="text"
-    //         placeholder="Blog Title"
-    //         className="input-field"
-    //         value={title}
-    //         onChange={(e) => handleInputChange(e, "title")}
-    //       />
-    //       <label style={{ padding: "10px" }} for="quillDescription">
-    //         Blog Description
-    //       </label>
-    //       <ReactQuill
-    //         value={quillDescription}
-    //         onChange={setQuillDescription}
-    //         modules={modules}
-    //       />
-    //       <div className="category-container">
-    //         {Array.isArray(availableCategories) &&
-    //           availableCategories.map((cat) => (
-    //             <label key={cat}>
-    //               <input
-    //                 type="checkbox"
-    //                 value={cat}
-    //                 checked={selectedCategories.includes(cat)}
-    //                 onChange={handleCategoryChange}
-    //               />
-    //               {cat}
-    //             </label>
-    //           ))}
-    //       </div>
-
-    //       <div className="subcategory-container">
-    //         {Array.isArray(availableSubCategories) &&
-    //           availableSubCategories.map((subcat) => (
-    //             <label key={subcat}>
-    //               <input
-    //                 type="checkbox"
-    //                 value={subcat}
-    //                 checked={selectedSubcategories.includes(subcat)}
-    //                 onChange={handleSubcategoryChange}
-    //               />
-    //               {subcat}
-    //             </label>
-    //           ))}
-    //       </div>
-
-    //       <div className="radio-container">
-    //         <input
-    //           type="radio"
-    //           id="published"
-    //           name="status"
-    //           value="published"
-    //           checked={active === "published"}
-    //           onChange={(e) => handleInputChange(e, "status")}
-    //           className="radio-input"
-    //         />
-    //         <label htmlFor="published" className="radio-label">
-    //           Published
-    //         </label>
-
-    //         <input
-    //           type="radio"
-    //           id="draft"
-    //           name="status"
-    //           value="draft"
-    //           checked={active === "draft"}
-    //           onChange={(e) => handleInputChange(e, "status")}
-    //           className="radio-input"
-    //         />
-    //         <label htmlFor="draft" className="radio-label">
-    //           Draft
-    //         </label>
-
-    //         <input
-    //           type="radio"
-    //           id="archived"
-    //           name="status"
-    //           value="archived"
-    //           checked={active === "archived"}
-    //           onChange={(e) => handleInputChange(e, "status")}
-    //           className="radio-input"
-    //         />
-    //         <label htmlFor="archived" className="radio-label">
-    //           Archived
-    //         </label>
-    //       </div>
-    //       <input
-    //         type="text"
-    //         placeholder="SEO title"
-    //         className="input-field"
-    //         value={seotitle}
-    //         onChange={(e) => handleInputChange(e, "seotitle")}
-    //       />
-    //       <input
-    //         type="text"
-    //         placeholder="SEO Description"
-    //         className="input-field"
-    //         value={seodescription}
-    //         onChange={(e) => handleInputChange(e, "seodescription")}
-    //       />
-    //     </form>
-
-    //     <h2>Upload Image</h2>
-    //     <input
-    //       type="file"
-    //       accept="image/*"
-    //       className="file-input"
-    //       onChange={handlePhotoChange}
-    //     />
-    //     <button onClick={uploadImage} className="button">
-    //       Upload Article
-    //     </button>
-    //   </div>
-    // </div>
     <div className="form-container">
       <div className="form-content">
         <h2>Upload an Article</h2>
@@ -301,6 +191,7 @@ function HomeDashboard() {
               Blog Description
             </label>
             <ReactQuill
+              style={{ height: "400px" }}
               className="quill"
               value={quillDescription}
               onChange={setQuillDescription}
@@ -310,35 +201,46 @@ function HomeDashboard() {
           </div>
 
           <div className="category-container">
-            <label>Categories:</label>
-            {Array.isArray(availableCategories) &&
-              availableCategories.map((cat) => (
-                <div key={cat} className="checkbox-group">
+            <div
+              className="form-group radio-container"
+              style={{ marginTop: "70px" }}
+            >
+              <label>Categories:</label>
+              {categories.map((cat) => (
+                <div key={cat._id} className="checkbox-group radio-label">
                   <input
                     type="checkbox"
-                    value={cat}
-                    checked={selectedCategories.includes(cat)}
+                    id={cat.name}
+                    value={cat.name}
+                    checked={selectedCategories.includes(cat.name)}
                     onChange={handleCategoryChange}
+                    className="checkbox-input"
                   />
-                  <label>{cat}</label>
+                  <label htmlFor={cat.name} className="checkbox-label">
+                    {cat.name}
+                  </label>
                 </div>
               ))}
-          </div>
+            </div>
 
-          <div className="subcategory-container">
-            <label>Subcategories:</label>
-            {Array.isArray(availableSubCategories) &&
-              availableSubCategories.map((subcat) => (
-                <div key={subcat} className="checkbox-group">
+            <div className="form-group radio-container">
+              <label htmlFor="subcategory">Subcategories:</label>
+              {availableSubcategories.map((subcat) => (
+                <div key={subcat} className="checkbox-group radio-label">
                   <input
                     type="checkbox"
+                    id={subcat}
                     value={subcat}
                     checked={selectedSubcategories.includes(subcat)}
                     onChange={handleSubcategoryChange}
+                    className="checkbox-input"
                   />
-                  <label>{subcat}</label>
+                  <label htmlFor={subcat} className="checkbox-label">
+                    {subcat}
+                  </label>
                 </div>
               ))}
+            </div>
           </div>
 
           <div className="form-group">

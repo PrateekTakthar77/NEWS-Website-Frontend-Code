@@ -67,10 +67,10 @@ function App() {
                       element={<SinglePerson />}
                     /> */}
                     {/* <Route path="/pricetable" element={<GoldPriceTable />} /> */}
-                    {/* <Route
+                    <Route
                       path="/makingcharges"
                       element={<MakingChargesTable />}
-                    /> */}
+                    />
                     {/* <Route path="/bookings" element={<BookingsTable />} /> */}
                     {/* <Route path="/customorders" element={<CustomOrders />} /> */}
                     {/* <Route
