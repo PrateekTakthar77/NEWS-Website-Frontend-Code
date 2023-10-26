@@ -16,11 +16,14 @@ import {
   useToast,
   Image,
   HStack,
+  InputGroup,
 } from "@chakra-ui/react";
 import LoginNav from "./LoginNav";
 import { useNavigate } from "react-router-dom";
 import { AdminState } from "../../components/context/context";
 import { BeatLoader } from "react-spinners";
+import { InputRightElement, IconButton } from "@chakra-ui/react";
+import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 
 const Login = ({ setLoggedIn }) => {
   const [email, setEmail] = useState("");
@@ -76,22 +79,19 @@ const Login = ({ setLoggedIn }) => {
       setLoading(false);
     }
   };
+
+  const [showPassword, setShowPassword] = useState(false);
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
+
   return (
     <>
       <LoginNav />
-      <Flex
-        minH={"100vh"}
-        align={"center"}
-        justify={"center"}
-        //   bg={useColorModeValue("gray.50", "gray.800")}
-      >
+      <Flex minH={"100vh"} align={"center"} justify={"center"}>
         <Stack spacing={8} mx={"auto"} maxW={"lg"} py={12} mt={-24} px={6}>
-          <Stack align={"center"}>
-            {/* <Heading fontSize={"4xl"}>Sign in to your account</Heading>
-          <Text fontSize={"lg"} color={"gray.600"}>
-            <Link color={"blue.400"}>Management</Link> ✌️
-          </Text> */}
-          </Stack>
+          <Stack align={"center"}></Stack>
           <Box
             rounded={"lg"}
             bg={useColorModeValue("white", "gray.700")}
@@ -110,28 +110,39 @@ const Login = ({ setLoggedIn }) => {
               </FormControl>
               <FormControl id="password">
                 <FormLabel>Password</FormLabel>
-                <Input
-                  type="password"
-                  placeholder="Password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                />
+                <InputGroup>
+                  <Input
+                    type={showPassword ? "text" : "password"}
+                    placeholder="Password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                  />
+                  <InputRightElement width="3rem">
+                    <IconButton
+                      h="1.75rem"
+                      size="sm"
+                      onClick={togglePasswordVisibility}
+                      icon={showPassword ? <ViewOffIcon /> : <ViewIcon />}
+                    />
+                  </InputRightElement>
+                </InputGroup>
               </FormControl>
+
               <Stack spacing={10}>
-                {/* <Stack
+                <Stack
                   direction={{ base: "column", sm: "row" }}
                   align={"start"}
                   justify={"space-between"}
                 >
                   <Checkbox>Remember me</Checkbox>
-                  <Link color={"blue.400"}>Forgot password?</Link>
-                </Stack> */}
+                  {/* <Link color={"blue.400"}>Forgot password?</Link> */}
+                </Stack>
                 <Button
-                  bg={"gray.800"}
-                  color={"#f4ca46"}
+                  bg={"blue.300"}
+                  color={"#333"}
                   _hover={{
                     color: "gray.800",
-                    bg: "#f4ca46",
+                    bg: "blue.500",
                   }}
                   onClick={handleLogin}
                   isLoading={loading}
