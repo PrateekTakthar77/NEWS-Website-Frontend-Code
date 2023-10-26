@@ -46,7 +46,7 @@ h2 {
 .radio-label {
     margin-left: 10px;
     margin-right: 20px;
-}
+} */
 
 /* Improved checkbox styling */
 /* .checkbox-input {
@@ -56,11 +56,11 @@ h2 {
 .checkbox-label::before {
     content: '';
     display: inline-block;
-    width: 18px;
-    height: 18px;
+    width: 8px;
+    height: 8px;
     margin-right: 8px;
-    border: 2px solid #121313;
-    border-radius: 3px;
+    border: 1px solid #121313;
+    border-radius: 10px;
     background-color: #fff;
     vertical-align: middle;
     cursor: pointer;
@@ -68,8 +68,8 @@ h2 {
 
 .checkbox-input:checked+.checkbox-label::before {
     background-color: #007bff;
-    border-color: #121313;
-}
+    /* border-color: #121313; */
+/* } 
 
 .category-container {
     display: block;
@@ -80,6 +80,49 @@ h2 {
     height: 400px;
 }
 
+/* Radio button styles similar to the checkboxes */
+/* .radio-input {
+    display: none;
+}
+
+.radio-group {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.radio-labels {
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+    cursor: pointer;
+} */
+
+/* .radio-labels::before {
+    content: ''; */
+/* Unicode character for a bullet (•) */
+/* font-size: 16px;
+    width: 8px;
+    height: 8px;
+    border: 1px solid #121313;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 18px;
+    margin-right: 8px;
+    margin-left: 5px;
+    background-color: #fff;
+    cursor: pointer;
+} */
+
+/* .radio-input:checked+.radio-labels::before {
+    background-color: #007bff;
+    color: #fff;
+    /* Bullet color when selected */
+/* border-color: #007bff;
+    border: 1px solid #121313;
+} */
+
+/* 
 @media (max-width: 768px) {
 
     .radio-container,
