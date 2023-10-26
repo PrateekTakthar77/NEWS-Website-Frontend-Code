@@ -69,11 +69,11 @@ const LinkItems = [
   //   icon: TbTruckDelivery,
   //   link: "/customorders",
   // },
-  // {
-  //   name: "Backup",
-  //   icon: TbTruckDelivery,
-  //   link: "/Backup",
-  // },
+  {
+    name: "Backup",
+    icon: TbTruckDelivery,
+    link: "/Backup",
+  },
 ];
 
 export default function SidebarWithHeader({ children, setLoggedIn }) {

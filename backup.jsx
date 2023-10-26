@@ -28,7 +28,7 @@ function HomeDashboard() {
   const uploadBlogData = async (blogData) => {
     try {
       const response = await axios.post(
-        "https://news-b4c3.onrender.com/api/article",
+        "https://news-so1v.onrender.com/api/article",
         blogData
       );
       console.log("Blog uploaded:", response.data);

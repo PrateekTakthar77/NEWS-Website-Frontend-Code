@@ -33,7 +33,7 @@ function HomeDashboard() {
 
   useEffect(() => {
     axios
-      .get("https://news-b4c3.onrender.com/api/article/category/get")
+      .get("https://news-so1v.onrender.com/api/article/category/get")
       .then((response) => {
         setCategories(response.data);
       })
@@ -49,7 +49,7 @@ function HomeDashboard() {
   const uploadBlogData = async (blogData) => {
     try {
       const response = await axios.post(
-        "https://news-b4c3.onrender.com/api/article",
+        "https://news-so1v.onrender.com/api/article",
         blogData
       );
       console.log("Blog uploaded:", response.data);
@@ -201,13 +201,10 @@ function HomeDashboard() {
           </div>
 
           <div className="category-container">
-            <div
-              className="form-group radio-container"
-              style={{ marginTop: "70px" }}
-            >
+            <div className="radio-container" style={{ marginTop: "70px" }}>
               <label>Categories:</label>
               {categories.map((cat) => (
-                <div key={cat._id} className="checkbox-group radio-label">
+                <div key={cat._id} className="radio-label">
                   <input
                     type="checkbox"
                     id={cat.name}
@@ -223,10 +220,10 @@ function HomeDashboard() {
               ))}
             </div>
 
-            <div className="form-group radio-container">
+            <div className="radio-container">
               <label htmlFor="subcategory">Subcategories:</label>
               {availableSubcategories.map((subcat) => (
-                <div key={subcat} className="checkbox-group radio-label">
+                <div key={subcat} className="radio-label">
                   <input
                     type="checkbox"
                     id={subcat}
@@ -266,6 +263,7 @@ function HomeDashboard() {
               onChange={(e) => handleInputChange(e, "seodescription")}
             />
           </div>
+
           <div className="radio-container">
             <label>Status:</label>
             <div className="radio-group">

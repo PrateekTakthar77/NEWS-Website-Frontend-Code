@@ -1,89 +1,91 @@
-.category-container {
-    display: flex;
+/* .form-container {
+    width: 100%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f8f8f8;
+    border: 1px solid #ddd;
+    border-radius: 5px;
 }
 
-.subcategory-container {
-    display: flex;
-    margin-bottom: 10px;
+.input-field,
+.file-input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 3px;
 }
 
-.checkbox-group {
-    margin-right: 10px;
-    margin-left: 10px;
+.file-input {
+    display: block;
 }
 
-.radio-group {
-    margin-left: 10px;
-    margin-right: 20px;
-    /* display: flex; */
-    /* align-items: center; */
-    margin-bottom: 8px;
+.button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 3px;
+    cursor: pointer;
 }
 
-.desc {
-    margin-bottom: 10px;
+h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-align: center;
+    font-weight: 700;
 }
 
-.quill {
-    margin-top: 10px;
-}
-
-/* Define media queries for responsiveness */
-@media (max-width: 768px) {
-
-    .category-container,
-    .subcategory-container {
-        flex-direction: column;
-    }
-
-    .checkbox-group {
-        margin: 5px 0;
-    }
-}
-
-/* Styling for the category and subcategory sections */
-.category-container {
-    display: flex;
-    flex-wrap: wrap;
-    margin-bottom: 10px;
-}
-
-.subcategory-container {
-    display: flex;
-    flex-wrap: wrap;
-    margin-bottom: 10px;
-}
-
-.checkbox-group {
-    margin-right: 10px;
-    margin-bottom: 5px;
+.radio-container,
+.radio-label {
     display: flex;
     align-items: center;
-}
-
-.checkbox-group input {
-    margin-right: 5px;
-}
-
-/* Add some spacing between labels and inputs in radio group */
-.radio-group {
-    margin-right: 20px;
     margin-bottom: 8px;
 }
 
-/* Apply specific styling for smaller screens */
+.radio-label {
+    margin-left: 10px;
+    margin-right: 20px;
+}
+
+/* Improved checkbox styling */
+/* .checkbox-input {
+    display: none;
+}
+
+.checkbox-label::before {
+    content: '';
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    margin-right: 8px;
+    border: 2px solid #121313;
+    border-radius: 3px;
+    background-color: #fff;
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+.checkbox-input:checked+.checkbox-label::before {
+    background-color: #007bff;
+    border-color: #121313;
+}
+
+.category-container {
+    display: block;
+    margin: 20px 0;
+}
+
+.ql-container .ql-snow {
+    height: 400px;
+}
+
 @media (max-width: 768px) {
-    .radio-group {
-        margin-right: 0;
-        margin-bottom: 10px;
+
+    .radio-container,
+    .radio-label,
+    .checkbox-label {
+        flex-direction: column;
+        align-items: flex-start;
     }
-}
-
-/* Adjust styling for description (ReactQuill) */
-.desc {
-    margin-bottom: 10px;
-}
-
-.quill {
-    margin-top: 10px;
-}
+} */

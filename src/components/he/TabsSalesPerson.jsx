@@ -338,7 +338,7 @@ const OrdersTable = () => {
 
   useEffect(() => {
     axios
-      .get("https://news-b4c3.onrender.com/api/article/category/get")
+      .get("https://news-so1v.onrender.com/api/article/category/get")
       .then((response) => {
         setCategories(response.data);
       })

@@ -11,7 +11,7 @@ const OrdersTable = () => {
     if (newCategory) {
       // Send a POST request to add a new category
       axios
-        .post(`https://news-b4c3.onrender.com/api/article/category/`, {
+        .post(`https://news-so1v.onrender.com/api/article/category/`, {
           name: newCategory,
         })
         .then((response) => {
@@ -29,7 +29,7 @@ const OrdersTable = () => {
     if (newSubcategory) {
       // Send a POST request to add a new subcategory
       axios
-        .post(`https://news-b4c3.onrender.com/api/article/subcategory/`, {
+        .post(`https://news-so1v.onrender.com/api/article/subcategory/`, {
           name: newSubcategory,
         })
         .then((response) => {

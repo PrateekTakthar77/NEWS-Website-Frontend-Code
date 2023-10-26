@@ -23,7 +23,7 @@ const UserTable = () => {
     const fetchNewUsers = async () => {
       try {
         const response = await axios.get(
-          `https://news-b4c3.onrender.com/api/article`
+          `https://news-so1v.onrender.com/api/article`
         );
         setUsers(response.data);
         setLoading(false);

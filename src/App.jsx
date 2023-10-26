@@ -57,7 +57,7 @@ function App() {
                     {/* <Route path="/orders/:orderId" element={<OrderDetails />} /> */}
                     {/* <Route path="/add-salesperson" element={<RegisterForm />} />  */}
                     <Route path="/salesperson" element={<TabsSalesPerson />} />
-                    {/* <Route path="/Backup" element={<PremiumCharges />} /> */}
+                    <Route path="/Backup" element={<PremiumCharges />} />
                     {/*<Route
                       path="/salesperson/update/:personId"
                       element={<UpdatePerson />}
