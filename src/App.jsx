@@ -53,10 +53,10 @@ function App() {
                     <Route path="/" element={<HomeDashboard />} />
                     {/* <Route path="/products" element={<ProductManagement />} /> */}
                     <Route path="/articles" element={<UserTable />} />
-                    <Route path="/category" element={<OrdersTable />} />
+                    <Route path="/salesperson" element={<OrdersTable />} />
                     {/* <Route path="/orders/:orderId" element={<OrderDetails />} /> */}
                     {/* <Route path="/add-salesperson" element={<RegisterForm />} />  */}
-                    <Route path="/salesperson" element={<TabsSalesPerson />} />
+                    <Route path="/category" element={<TabsSalesPerson />} />
                     <Route path="/Backup" element={<PremiumCharges />} />
                     {/*<Route
                       path="/salesperson/update/:personId"
@@ -68,7 +68,7 @@ function App() {
                     /> */}
                     {/* <Route path="/pricetable" element={<GoldPriceTable />} /> */}
                     <Route
-                      path="/makingcharges"
+                      path="/addcategory"
                       element={<MakingChargesTable />}
                     />
                     {/* <Route path="/bookings" element={<BookingsTable />} /> */}

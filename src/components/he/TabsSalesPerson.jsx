@@ -222,7 +222,7 @@ const OrdersTable = () => {
   return (
     <Box p={6} bg="gray.100" border="1px solid #ccc" borderRadius="lg">
       <VStack spacing={4} align="stretch">
-        <Link to="/category">
+        <Link to="/addcategory">
           <Button mt={4} colorScheme="teal" size="sm" rounded="md">
             Add new category
           </Button>
