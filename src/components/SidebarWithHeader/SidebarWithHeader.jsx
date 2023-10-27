@@ -143,10 +143,12 @@ const SidebarContent = ({ onClose, ...rest }) => {
         <HStack spacing="2">
           {" "}
           {/* Use HStack to display elements horizontally */}
+          {/* <Link to="/"> */}
           <Image src={news} alt="Logo" height="50px" />
           <Text fontSize="13px" fontWeight="bold" mr="2px">
             NEWS WEBSITE
           </Text>
+          {/* </Link> */}
         </HStack>
         <CloseButton display={{ base: "flex", md: "none" }} onClick={onClose} />
       </Flex>

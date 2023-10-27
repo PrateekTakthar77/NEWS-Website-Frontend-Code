@@ -222,11 +222,15 @@ const OrdersTable = () => {
   return (
     <Box p={6} bg="gray.100" border="1px solid #ccc" borderRadius="lg">
       <VStack spacing={4} align="stretch">
-        <Link to="/addcategory">
-          <Button mt={4} colorScheme="teal" size="sm" rounded="md">
-            Add new category
-          </Button>
-        </Link>
+        <Button
+          mt={4}
+          colorScheme="teal"
+          size="sm"
+          rounded="md"
+          style={{ width: "20%" }}
+        >
+          <Link to="/addcategory">Add new category</Link>
+        </Button>
         <Heading as="h3" size="sm" p={2} rounded="md">
           Categories
         </Heading>
