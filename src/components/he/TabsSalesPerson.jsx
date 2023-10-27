@@ -158,7 +158,7 @@ const OrdersTable = () => {
     try {
       // Make an HTTP request to update the subcategory
       const response = await axios.put(
-        `http://localhost:5009/api/article/category/add/${editCategoryId}`,
+        `https://news-so1v.onrender.com/api/article/category/add/${editCategoryId}`,
         {
           // categoryId: editCategoryId,
           subcategory: editSubcategory,
