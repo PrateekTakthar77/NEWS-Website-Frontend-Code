@@ -10,23 +10,28 @@ import {
   Th,
   Td,
   Spinner,
+  IconButton,
+  Flex,
+  useToast,
 } from "@chakra-ui/react";
 import axios from "axios";
 import { AdminState } from "../context/context";
 import "./ArticlePage.css";
+import { FaTrash, FaEdit } from "react-icons/fa";
 
 const UserTable = () => {
   const [loading, setLoading] = useState(true);
-  const [users, setUsers] = useState([]);
+  const [article, setArticle] = useState([]);
   const [error, setError] = useState(null);
+  const toast = useToast();
 
   useEffect(() => {
-    const fetchNewUsers = async () => {
+    const fetchArticles = async () => {
       try {
         const response = await axios.get(
           `https://news-so1v.onrender.com/api/article`
         );
-        setUsers(response.data);
+        setArticle(response.data);
         setLoading(false);
       } catch (error) {
         console.error(error);
@@ -41,7 +46,7 @@ const UserTable = () => {
       }
     };
 
-    fetchNewUsers();
+    fetchArticles();
   }, []);
 
   if (loading) {
@@ -51,6 +56,34 @@ const UserTable = () => {
       </Box>
     );
   }
+  const handleDeleteCategory = async (articleId) => {
+    try {
+      // Make an HTTP request to delete the category
+      const response = await axios.delete(
+        `https://news-so1v.onrender.com/api/article/${articleId}`
+        // {
+        //   data: { categoryId },
+        // }
+      );
+      toast({
+        title: "Deleted",
+        description: "Deleted Successfully.",
+        status: "success",
+        position: "top",
+        duration: 4000,
+      });
+
+      const updateStatus = await axios.get(
+        "https://news-so1v.onrender.com/api/article/"
+      );
+      const requested = updateStatus.data;
+      setArticle(requested);
+
+      console.log("Deleted Successfully", articleId);
+    } catch (error) {
+      console.error("Error deleting category:", error);
+    }
+  };
 
   return (
     // <div className="user-table-container">
@@ -110,16 +143,17 @@ const UserTable = () => {
               <Th>Category</Th>
               <Th>Subcategory</Th>
               <Th>Created At</Th>
+              <Th>actions</Th>
             </Tr>
           </Thead>
           <Tbody>
-            {users.map((user) => (
-              <Tr key={user._id}>
-                <Td>{user.title}</Td>
-                <Td>{user.category}</Td>
-                <Td>{user.subcategory}</Td>
+            {article.map((news) => (
+              <Tr key={news._id}>
+                <Td>{news.title}</Td>
+                <Td>{news.category}</Td>
+                <Td>{news.subcategory}</Td>
                 <Td>
-                  {new Date(user.createdAt).toLocaleString("en-IN", {
+                  {new Date(news.createdAt).toLocaleString("en-IN", {
                     day: "numeric",
                     month: "short",
                     year: "numeric",
@@ -127,6 +161,14 @@ const UserTable = () => {
                     minute: "numeric",
                     hour12: true,
                   })}
+                </Td>
+                <Td>
+                  <IconButton
+                    icon={<FaTrash />} // Delete icon
+                    colorScheme="red"
+                    size="sm"
+                    onClick={() => handleDeleteCategory(news._id)}
+                  />
                 </Td>
               </Tr>
             ))}
