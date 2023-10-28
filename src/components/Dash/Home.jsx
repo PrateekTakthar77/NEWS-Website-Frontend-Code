@@ -16,6 +16,7 @@ import {
   Button,
   FormControl,
   FormLabel,
+  useToast,
 } from "@chakra-ui/react";
 
 function HomeDashboard() {
@@ -30,6 +31,7 @@ function HomeDashboard() {
   const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [availableSubcategories, setAvailableSubcategories] = useState([]);
+  const toast = useToast();
 
   useEffect(() => {
     axios
@@ -52,7 +54,14 @@ function HomeDashboard() {
         "https://news-so1v.onrender.com/api/article",
         blogData
       );
-      console.log("Blog uploaded:", response.data);
+      // console.log("Blog uploaded:", response.data);
+      toast({
+        title: "Updated",
+        description: "blog Uploaded Successfully.",
+        status: "success",
+        position: "top",
+        duration: 5000,
+      });
     } catch (error) {
       console.error("Error uploading blog:", error);
     }

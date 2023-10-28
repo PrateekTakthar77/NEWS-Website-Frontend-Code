@@ -6,6 +6,7 @@ import {
   FormLabel,
   Radio,
   RadioGroup,
+  useToast,
 } from "@chakra-ui/react";
 import axios from "axios";
 
@@ -13,7 +14,7 @@ function AddCategoryAndSubcategoryForm() {
   const [category, setCategory] = useState("");
   const [subcategories, setSubcategories] = useState([]);
   const [status, setStatus] = useState("active"); // Default status
-
+  const toast = useToast();
   const handleAddCategoryAndSubcategory = async () => {
     try {
       console.log(category);
@@ -27,12 +28,18 @@ function AddCategoryAndSubcategoryForm() {
       }
 
       // Send a POST request to add the category and subcategories
-      await axios.post("http://localhost:5009/api/article/category/", {
+      await axios.post("https://news-so1v.onrender.com/api/article/category/", {
         category,
         subcategories,
         status, // Include the status in the request
       });
-
+      toast({
+        title: "Updated",
+        description: "Category and Subcategory added Successfully.",
+        status: "success",
+        position: "top",
+        duration: 4000,
+      });
       // Clear the input fields after successful submission
       setCategory("");
       setSubcategories([]);

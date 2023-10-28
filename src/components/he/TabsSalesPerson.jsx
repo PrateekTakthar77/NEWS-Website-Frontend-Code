@@ -197,7 +197,7 @@ const OrdersTable = () => {
     try {
       // Make an HTTP request to delete the category
       const response = await axios.delete(
-        `http://localhost:5009/api/article/category/delete`,
+        `https://news-so1v.onrender.com/api/article/category/delete`,
         {
           data: { categoryId },
         }
