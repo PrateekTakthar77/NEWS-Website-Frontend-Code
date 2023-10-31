@@ -74,6 +74,7 @@ function HomeDashboard() {
       setActive("");
       Setseotitle("");
       Setseodescription("");
+      Seturlparams("");
     };
     clearForm();
   };
