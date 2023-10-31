@@ -28,6 +28,7 @@ function HomeDashboard() {
   const [active, setActive] = useState("");
   const [seotitle, Setseotitle] = useState("");
   const [seodescription, Setseodescription] = useState("");
+  const [urlparams, Seturlparams] = useState("");
   const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [availableSubcategories, setAvailableSubcategories] = useState([]);
@@ -108,6 +109,7 @@ function HomeDashboard() {
         seotitle,
         seodescription,
         subcategory: selectedSubcategories.join(", "),
+        urlparams,
       });
     } catch (error) {
       console.error("Error uploading image:", error);
@@ -128,6 +130,8 @@ function HomeDashboard() {
       Setseodescription(value);
     } else if (field === "status") {
       setActive(value);
+    } else if (field === "urlparams") {
+      Seturlparams(value);
     }
   };
 
@@ -270,6 +274,18 @@ function HomeDashboard() {
               className="input-field"
               value={seodescription}
               onChange={(e) => handleInputChange(e, "seodescription")}
+            />
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="urlparams">URL Params</label>
+            <input
+              type="text"
+              id="urlparams"
+              placeholder="URL Params"
+              className="input-field"
+              value={urlparams}
+              onChange={(e) => handleInputChange(e, "urlparams")}
             />
           </div>
 
