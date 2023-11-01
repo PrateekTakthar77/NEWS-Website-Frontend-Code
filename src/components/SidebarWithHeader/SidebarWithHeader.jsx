@@ -52,7 +52,7 @@ const LinkItems = [
   // { name: "Manage Products", icon: MdShoppingCartCheckout, link: "/products" },
   { name: "Manage Articles", icon: MdOutlineManageSearch, link: "/articles" },
   { name: "Manage category", icon: MdOutlineCreate, link: "/category" },
-  { name: "Manage Category", icon: FiUserPlus, link: "/singlearticle" },
+  // { name: "Manage Category", icon: FiUserPlus, link: "/singlearticle" },
   // { name: "Manage Coins", icon: MdPriceChange, link: "/pricetable" },
   // {
   //   name: "Manage Making Charges",

@@ -110,7 +110,7 @@ function HomeDashboard() {
         seotitle,
         seodescription,
         subcategory: selectedSubcategories.join(", "),
-        urlparams,
+        engtitle: urlparams,
       });
     } catch (error) {
       console.error("Error uploading image:", error);
@@ -121,7 +121,6 @@ function HomeDashboard() {
   // Define the handleInputChange function to update input fields
   const handleInputChange = (e, field) => {
     const value = e.target.value;
-
     // Update the corresponding state based on the field
     if (field === "title") {
       setTitle(value);

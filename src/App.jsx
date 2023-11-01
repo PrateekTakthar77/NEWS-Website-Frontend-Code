@@ -4,7 +4,6 @@ import Login from "./pages/Auth/Login";
 import SidebarWithHeader from "./components/SidebarWithHeader/SidebarWithHeader";
 import HomeDashboard from "./components/Dash/Home";
 import Article from "./components/UserManagment/UsersTable";
-
 import TabsSalesPerson from "./components/he/TabsSalesPerson";
 import UpdatePerson from "./components/he/UpdatePerson";
 import MakingChargesTable from "./components/makingcharges/makingCharges";
