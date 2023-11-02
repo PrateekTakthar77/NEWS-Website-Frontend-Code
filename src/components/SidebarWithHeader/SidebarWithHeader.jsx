@@ -53,6 +53,7 @@ const LinkItems = [
   { name: "Manage Articles", icon: MdOutlineManageSearch, link: "/articles" },
   { name: "Manage category", icon: MdOutlineCreate, link: "/category" },
   // { name: "Manage Category", icon: FiUserPlus, link: "/singlearticle" },
+  // { name: "edit", icon: FiUserPlus, link: "/edit/:id" },
   // { name: "Manage Coins", icon: MdPriceChange, link: "/pricetable" },
   // {
   //   name: "Manage Making Charges",

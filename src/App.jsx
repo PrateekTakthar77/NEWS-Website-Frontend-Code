@@ -5,9 +5,10 @@ import SidebarWithHeader from "./components/SidebarWithHeader/SidebarWithHeader"
 import HomeDashboard from "./components/Dash/Home";
 import Article from "./components/UserManagment/UsersTable";
 import TabsSalesPerson from "./components/he/TabsSalesPerson";
-import UpdatePerson from "./components/he/UpdatePerson";
+import Fullnews from "./components/he/UpdatePerson";
 import MakingChargesTable from "./components/makingcharges/makingCharges";
 import PremiumCharges from "./components/Premium/premium";
+import Edit from "./components/editArticle/Edit";
 
 function App() {
   const [initialLoad, setInitialLoad] = useState(true);
@@ -41,12 +42,12 @@ function App() {
                     <Route path="/articles" element={<Article />} />
                     <Route path="/category" element={<TabsSalesPerson />} />
                     <Route path="/Backup" element={<PremiumCharges />} />
-                    <Route path="/singlearticle" element={<UpdatePerson />} />
-
+                    <Route path="/singlearticle" element={<Fullnews />} />
                     <Route
                       path="/addcategory"
                       element={<MakingChargesTable />}
                     />
+                    <Route path="/edit/:id" element={<Edit />} />
                   </>
                 ) : (
                   <>
