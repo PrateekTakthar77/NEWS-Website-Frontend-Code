@@ -228,14 +228,18 @@ function EditArticle() {
         status: "success",
         position: "top",
         duration: 5000,
+        isClosable: true,
       });
-      if (response.status === 200) {
-        console.log("Article updated successfully!");
-      } else {
-        console.error("Error updating article:", response.data.message);
-      }
     } catch (error) {
       console.error("Error updating article:", error);
+      toast({
+        title: "Updated",
+        description: "error updating blog.",
+        status: "error",
+        position: "top",
+        duration: 5000,
+        isClosable: true,
+      });
     }
   };
 
@@ -269,6 +273,10 @@ function EditArticle() {
       .filter((category) => updatedSelectedCategories.includes(category.name))
       .map((category) => category.subcategory)
       .flat(); // Flatten the array of subcategories
+    //  remove nested array and make it a sinngle array
+    //  const nestedArray = [1, 2, [3, 4], [5, 6, [7, 8]]];
+    // const flatArray = nestedArray.flat(Infinity);
+    // console.log(flatArray) //[1,2,3,4,5,6,7,8]
 
     setAvailableSubcategories(selectedSubcategories);
   };

@@ -62,9 +62,18 @@ function HomeDashboard() {
         status: "success",
         position: "top",
         duration: 5000,
+        isClosable: true,
       });
     } catch (error) {
       console.error("Error uploading blog:", error);
+      toast({
+        title: "Updated",
+        description: "error updating blog.",
+        status: "error",
+        position: "top",
+        duration: 5000,
+        isClosable: true,
+      });
     }
     const clearForm = () => {
       setTitle("");

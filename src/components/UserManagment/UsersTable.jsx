@@ -225,15 +225,23 @@ const UserTable = () => {
         duration: 4000,
       });
 
-      const updateStatus = await axios.get(
+      const updateState = await axios.get(
         "https://news-so1v.onrender.com/api/article/"
       );
-      const requested = updateStatus.data;
+      const requested = updateState.data;
       setArticle(requested);
 
       console.log("Deleted Successfully", articleId);
     } catch (error) {
       console.error("Error deleting article:", error);
+      toast({
+        title: "Updated",
+        description: "error deleting blog.",
+        status: "error",
+        position: "top",
+        duration: 5000,
+        isClosable: true,
+      });
     }
   };
 
@@ -247,7 +255,7 @@ const UserTable = () => {
       {error ? (
         <Box className="error-box">{error}</Box>
       ) : (
-        <Table variant="striped" colorScheme="teal">
+        <Table variant="striped" colorScheme="gray" size="md">
           <Thead>
             <Tr>
               <Th>Title</Th>
