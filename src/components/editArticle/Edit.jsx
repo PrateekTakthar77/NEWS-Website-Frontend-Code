@@ -507,7 +507,7 @@ function EditArticle() {
           onChange={(e) => setPhoto(e.target.files[0])}
         />
         <button type="button" onClick={uploadImage} className="button">
-          Save Changes
+          Save edited Changes
         </button>
       </div>
     </div>
