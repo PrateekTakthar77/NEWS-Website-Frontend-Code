@@ -64,6 +64,7 @@ function HomeDashboard() {
         duration: 5000,
         isClosable: true,
       });
+      console.log(response.data);
     } catch (error) {
       console.error("Error uploading blog:", error);
       toast({
@@ -113,12 +114,12 @@ function HomeDashboard() {
       uploadBlogData({
         title,
         description: quillDescription,
-        category: selectedCategories.join(", "),
+        category: selectedCategories,
         photo: secureUrl,
         status: active,
         seotitle,
         seodescription,
-        subcategory: selectedSubcategories.join(", "),
+        subcategory: selectedSubcategories,
         engtitle: urlparams,
       });
     } catch (error) {
