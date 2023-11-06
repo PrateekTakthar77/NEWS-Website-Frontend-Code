@@ -55,7 +55,6 @@ function EditArticle() {
         `https://news-so1v.onrender.com/api/article/${id}`,
         Data
       );
-
       toast({
         title: "Updated",
         description: "blog updated Successfully.",
@@ -152,8 +151,8 @@ function EditArticle() {
         title,
         description,
         photo: secureUrl,
-        category,
-        subcategory,
+        category: selectedCategories,
+        subcategory: selectedSubcategories,
         status,
         seotitle,
         seodescription,
