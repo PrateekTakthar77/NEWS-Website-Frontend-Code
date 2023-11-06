@@ -106,7 +106,8 @@ const OrdersTable = () => {
       <VStack spacing={4} align="stretch">
         <Button
           mt={4}
-          colorScheme="teal"
+          backgroundColor={"#0a2351"}
+          color={"white"}
           size="sm"
           rounded="md"
           style={{ width: "20%" }}
@@ -131,7 +132,8 @@ const OrdersTable = () => {
                 />
                 <IconButton
                   icon={<FaEdit />}
-                  colorScheme="teal"
+                  backgroundColor={"#0a2351"}
+                  color={"white"}
                   size="sm"
                   ml={2}
                   onClick={() =>

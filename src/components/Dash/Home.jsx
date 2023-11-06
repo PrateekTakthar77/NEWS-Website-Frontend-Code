@@ -354,7 +354,17 @@ function HomeDashboard() {
           className="file-input"
           onChange={handlePhotoChange}
         />
-        <button onClick={uploadImage} className="button">
+        <button
+          onClick={uploadImage}
+          style={{
+            backgroundColor: "#0a2351",
+            color: "#fff",
+            border: "none",
+            padding: "10px 20px",
+            borderRadius: "3px",
+            cursor: "pointer",
+          }}
+        >
           Upload Article
         </button>
       </div>
