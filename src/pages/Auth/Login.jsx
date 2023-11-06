@@ -92,6 +92,11 @@ const Login = ({ setLoggedIn }) => {
       <Flex minH={"100vh"} align={"center"} justify={"center"}>
         <Stack spacing={8} mx={"auto"} maxW={"lg"} py={12} mt={-24} px={6}>
           <Stack align={"center"}></Stack>
+          <Stack align={"center"}>
+            <Heading fontSize={"xl"} mb={"0px"}>
+              Log Into Your Account
+            </Heading>
+          </Stack>
           <Box
             rounded={"lg"}
             bg={useColorModeValue("white", "gray.700")}
@@ -138,11 +143,11 @@ const Login = ({ setLoggedIn }) => {
                   {/* <Link color={"blue.400"}>Forgot password?</Link> */}
                 </Stack>
                 <Button
-                  bg={"blue.300"}
-                  color={"#333"}
+                  bg={"#0a2351"}
+                  color={"white"}
                   _hover={{
-                    color: "gray.800",
-                    bg: "blue.500",
+                    color: "white",
+                    bg: "#3a5173",
                   }}
                   onClick={handleLogin}
                   isLoading={loading}
