@@ -59,7 +59,6 @@ const UserTable = () => {
   }
   const handleDeleteArticle = async (articleId) => {
     try {
-      // Make an HTTP request to delete the article
       const response = await axios.delete(
         `https://news-so1v.onrender.com/api/article/${articleId}`
       );
@@ -81,7 +80,7 @@ const UserTable = () => {
     } catch (error) {
       console.error("Error deleting article:", error);
       toast({
-        title: "Updated",
+        title: "error",
         description: "error deleting blog.",
         status: "error",
         position: "top",

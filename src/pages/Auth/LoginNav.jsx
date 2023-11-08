@@ -48,17 +48,17 @@ export default function NavBar() {
           mb={-12}
           justifyContent={"space-between"}
         >
-          {/* <Box>
+          <Box>
             <Image maxW={"24"} src={news} />
-          </Box> */}
+          </Box>
 
-          <Flex alignItems={"center"}>
+          {/* <Flex alignItems={"center"}>
             <Stack direction={"row"} spacing={7}>
-              {/* <Button onClick={toggleColorMode}>
+              <Button onClick={toggleColorMode}>
                 {colorMode === "light" ? <MoonIcon /> : <SunIcon />}
-              </Button> */}
+              </Button>
 
-              {/* <Menu>
+              <Menu>
                 <MenuButton
                   as={Button}
                   rounded={"full"}
@@ -89,9 +89,9 @@ export default function NavBar() {
                   <MenuItem>Account Settings</MenuItem>
                   <MenuItem>Logout</MenuItem>
                 </MenuList>
-              </Menu> */}
+              </Menu>
             </Stack>
-          </Flex>
+          </Flex> */}
         </Flex>
       </Box>
     </>
