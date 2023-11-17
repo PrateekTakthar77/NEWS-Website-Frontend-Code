@@ -5,6 +5,7 @@ import "react-quill/dist/quill.snow.css";
 import { useParams } from "react-router-dom";
 import "./edit.css"; // Import your edit component-specific styles
 import { useToast } from "@chakra-ui/react";
+import { AdminState } from "../context/context";
 
 function EditArticle() {
   const toast = useToast();
@@ -23,13 +24,12 @@ function EditArticle() {
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [selectedSubcategories, setSelectedSubcategories] = useState([]);
   const { id } = useParams();
+  const { user, setUserAgain, API_BASE_URL } = AdminState();
 
   useEffect(() => {
     const fetchArticleData = async () => {
       try {
-        const response = await axios.get(
-          `https://news-so1v.onrender.com/api/article/${id}`
-        );
+        const response = await axios.get(`${API_BASE_URL}/api/article/${id}`);
         const articleData = response.data;
 
         setTitle(articleData.title);
@@ -52,7 +52,7 @@ function EditArticle() {
   const handleSaveChanges = async (Data) => {
     try {
       const response = await axios.put(
-        `https://news-so1v.onrender.com/api/article/${id}`,
+        `${API_BASE_URL}/api/article/${id}`,
         Data
       );
       toast({
@@ -78,7 +78,7 @@ function EditArticle() {
 
   useEffect(() => {
     axios
-      .get("https://news-so1v.onrender.com/api/article/category/get")
+      .get(`${API_BASE_URL}/api/article/category/get`)
       .then((response) => {
         setCategories(response.data);
       })

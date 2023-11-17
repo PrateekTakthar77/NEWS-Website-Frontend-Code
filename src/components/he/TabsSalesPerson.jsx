@@ -13,16 +13,18 @@ import {
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { FaTrash, FaEdit } from "react-icons/fa"; // Import React Icons
+import { AdminState } from "../context/context";
 
 const OrdersTable = () => {
   const [categories, setCategories] = useState([]);
   const [editSubcategory, setEditSubcategory] = useState("");
   const [editCategoryId, setEditCategoryId] = useState("");
   const toast = useToast();
+  const { user, setUserAgain, API_BASE_URL } = AdminState();
 
   useEffect(() => {
     axios
-      .get("https://news-so1v.onrender.com/api/article/category/get")
+      .get(`${API_BASE_URL}/api/article/category/get`)
       .then((response) => {
         setCategories(response.data);
       })
@@ -40,7 +42,7 @@ const OrdersTable = () => {
     try {
       // Make an HTTP request to update the subcategory
       const response = await axios.put(
-        `https://news-so1v.onrender.com/api/article/category/add/${editCategoryId}`,
+        `${API_BASE_URL}/api/article/category/add/${editCategoryId}`,
         {
           // categoryId: editCategoryId,
           subcategory: editSubcategory,
@@ -56,7 +58,7 @@ const OrdersTable = () => {
 
       // // After successfully updating, fetch the updated data from the server
       const updatedDataResponse = await axios.get(
-        "https://news-so1v.onrender.com/api/article/category/get"
+        `${API_BASE_URL}/api/article/category/get`
       );
       const updatedData = updatedDataResponse.data;
 
@@ -79,7 +81,7 @@ const OrdersTable = () => {
     try {
       // Make an HTTP request to delete the category
       const response = await axios.delete(
-        `https://news-so1v.onrender.com/api/article/category/delete`,
+        `${API_BASE_URL}/api/article/category/delete`,
         {
           data: { categoryId },
         }

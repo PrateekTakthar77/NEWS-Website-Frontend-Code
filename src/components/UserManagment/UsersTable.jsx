@@ -19,19 +19,18 @@ import {
 import axios from "axios";
 import { FaTrash, FaEdit } from "react-icons/fa";
 import { Link as RouterLink } from "react-router-dom"; // Import RouterLink from react-router-dom
-
+import { AdminState } from "../context/context";
 const UserTable = () => {
   const [loading, setLoading] = useState(true);
   const [article, setArticle] = useState([]);
   const [error, setError] = useState(null);
   const toast = useToast();
+  const { user, setUserAgain, API_BASE_URL } = AdminState();
 
   useEffect(() => {
     const fetchArticles = async () => {
       try {
-        const response = await axios.get(
-          `https://news-so1v.onrender.com/api/article`
-        );
+        const response = await axios.get(`${API_BASE_URL}/api/article`);
         setArticle(response.data);
         setLoading(false);
       } catch (error) {
@@ -60,7 +59,7 @@ const UserTable = () => {
   const handleDeleteArticle = async (articleId) => {
     try {
       const response = await axios.delete(
-        `https://news-so1v.onrender.com/api/article/${articleId}`
+        `${API_BASE_URL}/api/article/${articleId}`
       );
       toast({
         title: "Deleted",
@@ -70,9 +69,7 @@ const UserTable = () => {
         duration: 4000,
       });
 
-      const updateState = await axios.get(
-        "https://news-so1v.onrender.com/api/article/"
-      );
+      const updateState = await axios.get(`${API_BASE_URL}/api/article/`);
       const requested = updateState.data;
       setArticle(requested);
 

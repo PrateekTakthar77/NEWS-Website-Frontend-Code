@@ -6,7 +6,7 @@ import HomeDashboard from "./components/Dash/Home";
 import Article from "./components/UserManagment/UsersTable";
 import TabsSalesPerson from "./components/he/TabsSalesPerson";
 import Fullnews from "./components/he/UpdatePerson";
-import MakingChargesTable from "./components/makingcharges/makingCharges";
+import AddCategoryAndSubcategoryForm from "./components/makingcharges/addCatSubcatform.js";
 import PremiumCharges from "./components/Premium/premium";
 import Edit from "./components/editArticle/Edit";
 
@@ -45,7 +45,7 @@ function App() {
                     <Route path="/singlearticle" element={<Fullnews />} />
                     <Route
                       path="/addcategory"
-                      element={<MakingChargesTable />}
+                      element={<AddCategoryAndSubcategoryForm />}
                     />
                     <Route path="/edit/:id" element={<Edit />} />
                   </>

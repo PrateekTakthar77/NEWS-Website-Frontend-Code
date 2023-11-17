@@ -18,6 +18,7 @@ import {
   FormLabel,
   useToast,
 } from "@chakra-ui/react";
+import { AdminState } from "../context/context";
 
 function HomeDashboard() {
   const [title, setTitle] = useState("");
@@ -33,10 +34,11 @@ function HomeDashboard() {
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [availableSubcategories, setAvailableSubcategories] = useState([]);
   const toast = useToast();
+  const { user, setUserAgain, API_BASE_URL } = AdminState();
 
   useEffect(() => {
     axios
-      .get("https://news-so1v.onrender.com/api/article/category/get")
+      .get(`${API_BASE_URL}/api/article/category/get`)
       .then((response) => {
         setCategories(response.data);
       })
@@ -52,7 +54,7 @@ function HomeDashboard() {
   const uploadBlogData = async (blogData) => {
     try {
       const response = await axios.post(
-        "https://news-so1v.onrender.com/api/article",
+        `${API_BASE_URL}/api/article`,
         blogData
       );
       // console.log("Blog uploaded:", response.data);

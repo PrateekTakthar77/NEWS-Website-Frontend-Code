@@ -9,12 +9,14 @@ import {
   useToast,
 } from "@chakra-ui/react";
 import axios from "axios";
+import { AdminState } from "../context/context";
 
 function AddCategoryAndSubcategoryForm() {
   const [category, setCategory] = useState("");
   const [subcategories, setSubcategories] = useState([]);
   const [status, setStatus] = useState("active"); // Default status
   const toast = useToast();
+  const { user, setUserAgain, API_BASE_URL } = AdminState();
   const handleAddCategoryAndSubcategory = async () => {
     try {
       console.log(category);
@@ -28,7 +30,7 @@ function AddCategoryAndSubcategoryForm() {
       }
 
       // Send a POST request to add the category and subcategories
-      await axios.post("https://news-so1v.onrender.com/api/article/category/", {
+      await axios.post(`${API_BASE_URL}/api/article/category/`, {
         category,
         subcategories,
         status, // Include the status in the request
@@ -73,12 +75,25 @@ function AddCategoryAndSubcategoryForm() {
       <FormControl id="status">
         <FormLabel>Status</FormLabel>
         <RadioGroup value={status} onChange={setStatus}>
-          <Radio value="active">Active</Radio>
+          <Radio mr={2} value="active">
+            Active
+          </Radio>
           <Radio value="disable">Disable</Radio>
         </RadioGroup>
       </FormControl>
 
-      <Button onClick={handleAddCategoryAndSubcategory} marginTop={"20px"}>
+      <Button
+        onClick={handleAddCategoryAndSubcategory}
+        marginTop={"20px"}
+        style={{
+          backgroundColor: "#0a2351",
+          color: "#fff",
+          border: "none",
+          padding: "10px 20px",
+          borderRadius: "3px",
+          cursor: "pointer",
+        }}
+      >
         Add Category and Subcategories
       </Button>
     </form>

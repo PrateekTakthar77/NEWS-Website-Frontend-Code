@@ -59,7 +59,7 @@ h2 {
 }
 
 .checkbox-input:checked+.checkbox-label::before {
-    background-color: #007bff;
+    background-color: #0a2351;
     /* border-color: #121313; */
 }
 
@@ -107,7 +107,7 @@ h2 {
 }
 
 .radio-input:checked+.radio-labels::before {
-    background-color: #007bff;
+    background-color: #0a2351;
     color: #fff;
     /* Bullet color when selected */
     border-color: #007bff;
