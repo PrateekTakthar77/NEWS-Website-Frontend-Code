@@ -15,6 +15,7 @@ import {
   useToast,
   Link,
   HStack, // Import HStack for horizontal alignment
+  Text,
 } from "@chakra-ui/react";
 import axios from "axios";
 import { FaTrash, FaEdit, FaSearch } from "react-icons/fa";
@@ -116,27 +117,8 @@ const UserTable = () => {
 
   return (
     <Box className="user-table-container">
-      {/* <Box display="flex" justifyContent="space-between" alignItems="center">
-        <Center>
-          <Heading
-            as="h1"
-            size="lg"
-            mb={4}
-            mt={2}
-            style={{ alignSelf: "center" }}
-          >
-            All Articles Posted
-          </Heading>
-        </Center>
-        <input
-          type="text"
-          placeholder="Search articles..."
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-          style={{ padding: "4px" }}
-        />
-      </Box> */}
       <Box display="flex" alignItems="center">
+        <Text>Total Articles {sortedArticles.length}</Text>
         <Center flex="1">
           {/* Using flex="1" to allow the Heading to take remaining space */}
           <Heading as="h1" size="lg" mb={4} mt={2}>
@@ -145,7 +127,7 @@ const UserTable = () => {
         </Center>
         <input
           type="text"
-          placeholder="Search articles..."
+          placeholder="🔍 Search articles..."
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           style={{ padding: "4px", marginLeft: "auto" }}
@@ -201,6 +183,7 @@ const UserTable = () => {
               </Tr>
             ))}
           </Tbody>
+          <Text>Total Articles Added {sortedArticles.length}</Text>
         </Table>
       )}
     </Box>
