@@ -161,6 +161,14 @@ function EditArticle() {
     } catch (error) {
       console.error("Error uploading image:", error);
       console.log("Response data:", error.response.data);
+      toast({
+        title: "Updated",
+        description: "error updating Image Cloudinary.",
+        status: "error",
+        position: "top",
+        duration: 5000,
+        isClosable: true,
+      });
     }
   };
 
